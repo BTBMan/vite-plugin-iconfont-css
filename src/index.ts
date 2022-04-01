@@ -1,6 +1,8 @@
 import type { Plugin } from 'vite';
+import { isMatch } from 'micromatch';
+import { parseExpressionAt, parse } from 'acorn';
 
-export const IconfontCss = (): Plugin => {
+export function IconfontCss(): Plugin {
   let aliUrl = '';
   const virtualModuleId = '@ali-icon-module.css';
   const resolvedVirtualModuleId = `\0${virtualModuleId}`;
@@ -8,7 +10,20 @@ export const IconfontCss = (): Plugin => {
   return {
     name: 'vite-plugin-iconfont-css',
     transform(code, id) {
-      console.log(id, 1, 2);
+      if (
+        isMatch(id, ['**/*.js', '**/*jsx', '**/*.ts', '**/*tsx', '**/*.vue'])
+      ) {
+        // 匹配 createFromIconfontCN 但是可能会出现别名的情况 也须要处理
+        const ast = parseExpressionAt(code, 1, {
+          ecmaVersion: 'latest',
+          sourceType: 'module',
+          ranges: true,
+        });
+
+        console.log(ast);
+      }
+
+      //
       // const matchedUrl = code.match(/at\.alicdn.+js/)?.[0];
 
       // if (matchedUrl) {
@@ -35,4 +50,4 @@ export const IconfontCss = (): Plugin => {
       return null;
     },
   };
-};
+}

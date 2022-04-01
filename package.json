@@ -8,7 +8,8 @@
   "scripts": {
     "dev": "unbuild --stub",
     "build": "unbuild",
-    "play": "vite playground"
+    "play": "vite playground",
+    "test:unit": "vitest"
   },
   "repository": {
     "type": "git",
@@ -18,10 +19,16 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/estree": "^0.0.51",
+    "@types/micromatch": "^4.0.2",
     "rollup": "^2.70.1",
     "typescript": "^4.6.2",
     "unbuild": "^0.7.2",
     "vite": "^2.9.0",
     "vitest": "^0.8.1"
+  },
+  "dependencies": {
+    "acorn": "^8.7.0",
+    "micromatch": "^4.0.5"
   }
 }

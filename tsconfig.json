@@ -11,7 +11,8 @@
     "preserveConstEnums": true,
     "sourceMap": true,
     "downlevelIteration": true,
-    "lib": ["esnext", "DOM"]
+    "lib": ["esnext", "DOM"],
+    "types": ["vite/client", "vitest"]
   },
   "include": ["**/*.ts", "**/*.d.ts"],
   "exclude": ["node_modules", "src/**/__tests__/*", "**/*.js"]
