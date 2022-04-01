@@ -1,0 +1,27 @@
+{
+  "name": "vite-plugin-iconfont-css",
+  "version": "1.0.0",
+  "description": "A Plugin for auto import iconfont css.",
+  "main": "lib/index.cjs",
+  "module": "lib/index.mjs",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "dev": "unbuild --stub",
+    "build": "unbuild",
+    "play": "vite playground"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BTBMan/vite-plugin-iconfont-css.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "rollup": "^2.70.1",
+    "typescript": "^4.6.2",
+    "unbuild": "^0.7.2",
+    "vite": "^2.9.0",
+    "vitest": "^0.8.1"
+  }
+}
