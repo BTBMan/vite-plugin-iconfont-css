@@ -1,26 +1,39 @@
 {
   "name": "vite-plugin-iconfont-css",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "A Plugin for auto import iconfont css.",
-  "main": "lib/index.cjs",
-  "module": "lib/index.mjs",
-  "types": "lib/index.d.ts",
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "scripts": {
     "dev": "unbuild --stub",
-    "build": "unbuild",
+    "build": "rimraf dist && unbuild",
     "play": "vite playground",
-    "test:unit": "vitest"
+    "test:unit": "vitest",
+    "prepublishOnly": "bumpp --commit --push --tag && pnpm build",
+    "release": "pnpm publish"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/BTBMan/vite-plugin-iconfont-css.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "@ant-design/icons-vue",
+    "iconfont",
+    "css"
+  ],
+  "files": [
+    "dist",
+    "package.json",
+    "README.md"
+  ],
+  "author": "BTB",
+  "license": "MIT",
   "devDependencies": {
     "@types/estree": "^0.0.51",
     "@types/micromatch": "^4.0.2",
+    "bumpp": "^7.1.1",
+    "rimraf": "^3.0.2",
     "rollup": "^2.70.1",
     "typescript": "^4.6.2",
     "unbuild": "^0.7.2",
