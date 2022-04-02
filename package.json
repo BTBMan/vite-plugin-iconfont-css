@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-iconfont-css",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A Plugin for auto import iconfont css.",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
