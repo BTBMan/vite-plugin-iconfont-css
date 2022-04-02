@@ -1,5 +1,4 @@
 <script setup lang="ts">
-  import { defineComponent } from 'vue';
   import { createFromIconfontCN } from '@ant-design/icons-vue';
 
   const AliIcon = createFromIconfontCN({

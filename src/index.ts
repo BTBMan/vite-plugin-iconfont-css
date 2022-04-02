@@ -3,12 +3,21 @@ import { isMatch } from 'micromatch';
 import { parseCreateFromIconfontCN } from './parse';
 import { composeCss } from './composeCss';
 
-export function IconfontCss(): Plugin {
+type Options = {
+  include: string[];
+};
+
+const defaultOptions = {
+  include: ['**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx', '**/*.vue'],
+};
+
+export function IconfontCss(opt?: Options): Plugin {
+  const optinos: Options = Object.assign(defaultOptions, opt);
+  const { include } = optinos;
   let aliUrls: string[] = [];
   const virtualModuleId = '@ali-icon-module.css';
   const resolvedVirtualModuleId = `\0${virtualModuleId}`;
-  const fileMatched = (id) =>
-    isMatch(id, ['**/*.js', '**/*jsx', '**/*.ts', '**/*tsx']);
+  const fileMatched = (id) => isMatch(id, include);
 
   return {
     name: 'vite-plugin-iconfont-css',
