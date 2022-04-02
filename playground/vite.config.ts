@@ -4,7 +4,7 @@ import { IconfontCss } from '../src';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue(), IconfontCss({ include: ['**/*.vue'] })],
+  plugins: [vue(), IconfontCss()],
   server: {
     host: '0.0.0.0',
   },

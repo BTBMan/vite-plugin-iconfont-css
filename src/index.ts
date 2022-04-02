@@ -8,12 +8,13 @@ type Options = {
 };
 
 const defaultOptions = {
-  include: ['**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx', '**/*.vue'],
+  include: ['**/*.js', '**/*.jsx', '**/**/*.ts', '**/*.tsx'],
 };
 
 export function IconfontCss(opt?: Options): Plugin {
   const optinos: Options = Object.assign(defaultOptions, opt);
   const { include } = optinos;
+  let alreadyImportUrls: string[] = [];
   let aliUrls: string[] = [];
   const virtualModuleId = '@ali-icon-module.css';
   const resolvedVirtualModuleId = `\0${virtualModuleId}`;
@@ -23,7 +24,9 @@ export function IconfontCss(opt?: Options): Plugin {
     name: 'vite-plugin-iconfont-css',
     transform(code, id) {
       if (fileMatched(id)) {
-        aliUrls = parseCreateFromIconfontCN(code, id);
+        aliUrls = Array.from(
+          new Set([...aliUrls, ...parseCreateFromIconfontCN(code, id)]),
+        );
 
         if (aliUrls.length) {
           return `import '${virtualModuleId}'
@@ -42,7 +45,11 @@ export function IconfontCss(opt?: Options): Plugin {
     },
     load(id) {
       if (id === resolvedVirtualModuleId) {
-        return composeCss(aliUrls);
+        const cssStr = composeCss(aliUrls, alreadyImportUrls);
+
+        aliUrls = [];
+
+        return cssStr;
       }
 
       return null;
