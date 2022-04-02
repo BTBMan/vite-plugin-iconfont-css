@@ -1,6 +1,7 @@
 import type { Plugin } from 'vite';
 import { isMatch } from 'micromatch';
 import { parseCreateFromIconfontCN } from './parse';
+import { composeCss } from './composeCss';
 
 export function IconfontCss(): Plugin {
   let aliUrls: string[] = [];
@@ -32,10 +33,7 @@ export function IconfontCss(): Plugin {
     },
     load(id) {
       if (id === resolvedVirtualModuleId) {
-        console.log('a');
-
-        return '';
-        //   return `@import '//${aliUrl.replace('.js', '.css')}';`;
+        return composeCss(aliUrls);
       }
 
       return null;

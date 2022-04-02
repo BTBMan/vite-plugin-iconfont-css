@@ -1,10 +1,10 @@
 <script setup lang="ts">
-  // import { defineComponent } from 'vue';
-  // import { createFromIconfontCN } from '@ant-design/icons-vue';
+  import { defineComponent } from 'vue';
+  import { createFromIconfontCN } from '@ant-design/icons-vue';
 
-  // const AliIcon = createFromIconfontCN({
-  //   scriptUrl: '//at.alicdn.com/t/font_3295861_9autcxth94f.js',
-  // });
+  const AliIcon = createFromIconfontCN({
+    scriptUrl: '//at.alicdn.com/t/font_3295861_9autcxth94f.js',
+  });
 </script>
 
 <template>
