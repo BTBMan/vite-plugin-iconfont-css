@@ -7,30 +7,36 @@ export function IconfontCss(): Plugin {
   const virtualModuleId = '@ali-icon-module.css';
   const resolvedVirtualModuleId = `\0${virtualModuleId}`;
   const fileMatched = (id) =>
-    isMatch(id, ['**/*.js', '**/*jsx', '**/*.ts', '**/*tsx', '**/*.vue']);
+    isMatch(id, ['**/*.js', '**/*jsx', '**/*.ts', '**/*tsx']);
 
   return {
     name: 'vite-plugin-iconfont-css',
     transform(code, id) {
       if (fileMatched(id)) {
         aliUrls = parseCreateFromIconfontCN(code, id);
-      }
 
-      console.log(aliUrls);
+        if (aliUrls.length) {
+          return `import '${virtualModuleId}'
+            ${code}`;
+        }
+      }
 
       return null;
     },
     resolveId(id) {
-      // if (id === virtualModuleId) {
-      //   return resolvedVirtualModuleId;
-      // }
+      if (id === virtualModuleId) {
+        return resolvedVirtualModuleId;
+      }
 
       return null;
     },
     load(id) {
-      // if (id === resolvedVirtualModuleId) {
-      //   return `@import '//${aliUrl.replace('.js', '.css')}';`;
-      // }
+      if (id === resolvedVirtualModuleId) {
+        console.log('a');
+
+        return '';
+        //   return `@import '//${aliUrl.replace('.js', '.css')}';`;
+      }
 
       return null;
     },
