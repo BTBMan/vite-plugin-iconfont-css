@@ -1,37 +1,22 @@
 import type { Plugin } from 'vite';
 import { isMatch } from 'micromatch';
-import { parseExpressionAt, parse } from 'acorn';
+import { parseCreateFromIconfontCN } from './parse';
 
 export function IconfontCss(): Plugin {
-  let aliUrl = '';
+  let aliUrls: string[] = [];
   const virtualModuleId = '@ali-icon-module.css';
   const resolvedVirtualModuleId = `\0${virtualModuleId}`;
+  const fileMatched = (id) =>
+    isMatch(id, ['**/*.js', '**/*jsx', '**/*.ts', '**/*tsx', '**/*.vue']);
 
   return {
     name: 'vite-plugin-iconfont-css',
     transform(code, id) {
-      if (
-        isMatch(id, ['**/*.js', '**/*jsx', '**/*.ts', '**/*tsx', '**/*.vue'])
-      ) {
-        // 匹配 createFromIconfontCN 但是可能会出现别名的情况 也须要处理
-        const ast = parseExpressionAt(code, 1, {
-          ecmaVersion: 'latest',
-          sourceType: 'module',
-          ranges: true,
-        });
-
-        console.log(ast);
+      if (fileMatched(id)) {
+        aliUrls = parseCreateFromIconfontCN(code, id);
       }
 
-      //
-      // const matchedUrl = code.match(/at\.alicdn.+js/)?.[0];
-
-      // if (matchedUrl) {
-      //   aliUrl = matchedUrl;
-
-      //   return `import '${virtualModuleId}'
-      //       ${code}`;
-      // }
+      console.log(aliUrls);
 
       return null;
     },
