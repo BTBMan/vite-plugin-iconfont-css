@@ -30,7 +30,6 @@ export default defineConfig({
 ### `include`
 
 - Type: `string[]`
-
 - Default: `['**/*.js', '**/*.jsx', '**/**/*.ts', '**/*.tsx']`
 
 Array of files, To include when scanning.
