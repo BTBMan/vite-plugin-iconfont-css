@@ -18,7 +18,7 @@ yarn i vite-plugin-iconfont-css -D
 // vite.config.js
 
 import { defineConfig } from 'vite';
-import { IconfontCss } from '../src';
+import { IconfontCss } from 'vite-plugin-iconfont-css';
 
 export default defineConfig({
   plugins: [IconfontCss()],
