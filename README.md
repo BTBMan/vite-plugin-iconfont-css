@@ -2,7 +2,7 @@
 
 This plugin is for auto import iconfont `.css` file by use [@ant-design/icons-vue](https://2x.antdv.com/components/icon-cn#API) `createFromIconfontCN` method in your project
 
-# Install
+## Install
 
 ```bash
 npm i vite-plugin-iconfont-css -D
@@ -12,7 +12,7 @@ pnpm i vite-plugin-iconfont-css -D
 yarn i vite-plugin-iconfont-css -D
 ```
 
-# Usage
+## Usage
 
 ```js
 // vite.config.js
@@ -25,9 +25,9 @@ export default defineConfig({
 });
 ```
 
-# Options
+## Options
 
-### `include`
+#### `include`
 
 - Type: `string[]`
 
