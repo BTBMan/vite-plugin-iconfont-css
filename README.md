@@ -27,7 +27,7 @@ export default defineConfig({
 
 # Options
 
-## `include`
+### `include`
 
 - Type: `string[]`
 
